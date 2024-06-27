@@ -33,7 +33,7 @@ export default function EditTodosForm({ id, title, description }) {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col gap-3">
+    <form onSubmit={handleSubmit} className="flex flex-col gap-3 bg-[#E86B51]">
       <input
         onChange={(e) => setNewTitle(e.target.value)}
         value={newTitle}
@@ -50,7 +50,7 @@ export default function EditTodosForm({ id, title, description }) {
         placeholder="To Do's Description"
       />
 
-      <button className="bg-green-600 font-bold text-white py-3 px-6 w-fit">
+      <button className="bg-[#3b82f6] font-bold text-white py-3 px-6 w-fit">
         Update Topic
       </button>
     </form>

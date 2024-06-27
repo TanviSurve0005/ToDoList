@@ -26,14 +26,15 @@ export default async function TopicsList() {
 
   return (
     <>
-      {topics.map((t) => (
+      {topics.map((t) => (<div className="bg-[#E86B51] py-3 flex flex-col justify-center items-center">
         <div
           key={t._id}
-          className="p-4 border border-slate-300 my-3 flex justify-between gap-5 items-start"
-        >
+          className="p-3 border border-slate-300 my-5 flex justify-between gap-5 items-start
+          w-[600px] rounded-[15px] bg-[#ffffff]"
+          >
           <div>
-            <h2 className="font-bold text-2xl">{t.title}</h2>
-            <div>{t.description}</div>
+            <h2 className="font-bold text-[20px] pl-5">{t.title}</h2>
+            <div className="pl-5 ">{t.description}</div>
           </div>
 
           <div className="flex gap-4">
@@ -42,6 +43,7 @@ export default async function TopicsList() {
               <HiPencilAlt size={28} className="icon"/>
             </Link>
           </div>
+        </div>
         </div>
       ))}
     </>

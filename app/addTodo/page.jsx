@@ -37,11 +37,11 @@ export default function AddTopic() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col gap-3">
+    <form onSubmit={handleSubmit} className="flex flex-col justify-center items-center gap-3 bg-[#E86B51] py-10 rounded-[25px]">
       <input
         onChange={(e) => setTitle(e.target.value)}
         value={title}
-        className="border border-slate-500 px-8 py-2"
+        className="border border-slate-500 px-8 py-5 w-[700px] rounded-[25px]"
         type="text"
         placeholder="To Do's Title"
       />
@@ -49,7 +49,7 @@ export default function AddTopic() {
       <input
         onChange={(e) => setDescription(e.target.value)}
         value={description}
-        className="border border-slate-500 px-8 py-2"
+        className="border border-slate-500 px-8 py-5 w-[700px] rounded-[25px]"
         type="text"
         placeholder="To DO's Description"
       />
