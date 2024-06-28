@@ -37,7 +37,7 @@ export default function EditTodosForm({ id, title, description }) {
       <input
         onChange={(e) => setNewTitle(e.target.value)}
         value={newTitle}
-        className="border border-slate-500 px-8 py-2"
+        className="border border-slate-500 px-8 py-2 w-[800px] rounded-[15px]"
         type="text"
         placeholder="To Do's Title"
       />
@@ -45,7 +45,7 @@ export default function EditTodosForm({ id, title, description }) {
       <input
         onChange={(e) => setNewDescription(e.target.value)}
         value={newDescription}
-        className="border border-slate-500 px-8 py-2"
+        className="border border-slate-500 px-8 py-2 w-[800px] rounded-[15px]"
         type="text"
         placeholder="To Do's Description"
       />

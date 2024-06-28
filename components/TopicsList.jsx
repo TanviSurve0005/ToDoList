@@ -1,31 +1,40 @@
+"use client";
+
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import RemoveBtn from "./RemoveBtn";
 import { HiPencilAlt } from "react-icons/hi";
 
-const getTopics = async () => {
-  try {
-    const res = await fetch("http://localhost:3000/api/todos", {
-      cache: "no-store",
-    });
+const TopicsList = ({ addCompletedTask }) => {
+  const [topics, setTopics] = useState([]);
 
-    if (!res.ok) {
-      throw new Error("Failed to fetch To Do's");
-    }
+  useEffect(() => {
+    const fetchTopics = async () => {
+      try {
+        const res = await fetch("http://localhost:3000/api/todos", {
+          cache: "no-store",
+        });
 
-    const data = await res.json();
-    return data; // Return the parsed JSON data
-  } catch (error) {
-    console.error("Error loading To Do's: ", error);
-    return { topics: [] }; // Return an empty array or handle error case
-  }
-};
+        if (!res.ok) {
+          throw new Error("Failed to fetch To Do's");
+        }
 
-export default async function TopicsList() {
-  const { topics } = await getTopics();
+        const data = await res.json();
+        setTopics(data.topics);
+      } catch (error) {
+        console.error("Error loading To Do's: ", error);
+      }
+    };
 
-  // Check if topics is undefined or empty before rendering
+    fetchTopics();
+  }, []);
+
+  const handleCheckboxChange = (task) => {
+    addCompletedTask(task);
+  };
+
   if (!topics || topics.length === 0) {
-    return <p>Loading...</p>; // You can show a loading indicator or message here
+    return <p>Loading...</p>;
   }
 
   return (
@@ -41,6 +50,7 @@ export default async function TopicsList() {
             <div className="flex gap-4 items-center">
               <input
                 type="checkbox"
+                onChange={() => handleCheckboxChange(t)}
                 className="form-checkbox h-6 w-6 text-green-600"
               />
               <RemoveBtn id={t._id} />
@@ -53,4 +63,6 @@ export default async function TopicsList() {
       ))}
     </>
   );
-}
+};
+
+export default TopicsList;
