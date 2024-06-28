@@ -1,32 +1,27 @@
-import { useState, useEffect } from "react";
 import Link from "next/link";
 import RemoveBtn from "./RemoveBtn";
 import { HiPencilAlt } from "react-icons/hi";
 
-const TopicsList = () => {
-  const [topics, setTopics] = useState([]);
+const getTopics = async () => {
+  try {
+    const res = await fetch("http://localhost:3000/api/todos", {
+      cache: "no-store",
+    });
 
-  useEffect(() => {
-    const fetchTopics = async () => {
-      try {
-        const res = await fetch("http://localhost:3000/api/todos", {
-          cache: "no-store",
-        });
+    if (!res.ok) {
+      throw new Error("Failed to fetch To Do's");
+    }
 
-        if (!res.ok) {
-          throw new Error("Failed to fetch To Do's");
-        }
+    const data = await res.json();
+    return data; // Return the parsed JSON data
+  } catch (error) {
+    console.error("Error loading To Do's: ", error);
+    return { topics: [] }; // Return an empty array or handle error case
+  }
+};
 
-        const data = await res.json();
-        setTopics(data.topics); // Set the fetched topics into state
-      } catch (error) {
-        console.error("Error loading To Do's: ", error);
-        // Handle error case
-      }
-    };
-
-    fetchTopics();
-  }, []); // Empty dependency array ensures useEffect runs only once
+export default async function TopicsList() {
+  const { topics } = await getTopics();
 
   // Check if topics is undefined or empty before rendering
   if (!topics || topics.length === 0) {
@@ -46,7 +41,6 @@ const TopicsList = () => {
             <div className="flex gap-4 items-center">
               <input
                 type="checkbox"
-                onChange={() => toggleTopicSelection(t._id)}
                 className="form-checkbox h-6 w-6 text-green-600"
               />
               <RemoveBtn id={t._id} />
@@ -59,6 +53,4 @@ const TopicsList = () => {
       ))}
     </>
   );
-};
-
-export default TopicsList;
+}
