@@ -3,7 +3,7 @@ import { RiAddLine } from "react-icons/ri";
 
 const Navbar = () => {
   return (
-    <nav className="flex justify-center items-center bg-blue-500 px-8 py-3 rounded-full text-center max-w-3xl">
+    <nav className="flex justify-center items-center bg-blue-500 px-8 py-3 rounded-full text-center w-[800px]">
       <Link href="/addTodo" passHref legacyBehavior>
         <a className="text-white flex items-center">
           <span className="mr-1">Add Topic</span>

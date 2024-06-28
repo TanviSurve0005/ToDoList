@@ -14,8 +14,8 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
-        <div className="max-w-3xl mx-auto p-4">
+      <body className={`${inter.className} bg-[#E86B51]`}>
+        <div className="w-full mx-auto p-4 flex flex-col justify-center items-center">
         <Header />
           <Navbar />
           <div className="mt-8">{children}</div>

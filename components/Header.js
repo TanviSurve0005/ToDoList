@@ -2,9 +2,14 @@ import Link from 'next/link';
 
 const Header = () => {
   return (
-    <header className="bg-gray-800 text-white p-4 my-10 max-w-full">
-      <div className="container mx-auto flex justify-center items-center ">
-        <Link href="/" className="text-2xl font-bold text-center">To-Do App</Link>
+    <header className="bg-gray-800 text-white p-4 mb-10 w-full">
+      <div className="container mx-auto flex justify-between items-center">
+        <Link href="/" className="text-2xl font-bold">To-Do App</Link>
+        <nav className="space-x-4">
+          <Link href="/" className="hover:text-gray-400">Acticity</Link>
+          <Link href="/about" className="hover:text-gray-400">Completed</Link>
+          <Link href="/contact" className="hover:text-gray-400">Priority</Link>
+        </nav>
       </div>
     </header>
   );
